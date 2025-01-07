@@ -140,7 +140,7 @@ $$
 
 ---
 
-### 3. ILP & Binary Variables Modeling
+### 3. ILP Binary Variables Modeling
 
 A distribution company has to supply a single type of good to $n$ clients. Let $d_j$ denote the
 demand of client $j$, where $j \in J = \{1,2,...,n\}$. The goods must be stocked in warehouses before
@@ -256,7 +256,7 @@ For better understanding checkout exercise 1.4.
 
 ---
 
-### 5. Somhow I Model
+### 5. Somehow I Model
 
 This example shows how to do a simple trick in order to have the best modeling. Nameing is a reference to Michael Scott's book `Somehow I manage`.
 
