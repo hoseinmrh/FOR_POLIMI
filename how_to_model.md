@@ -221,33 +221,21 @@ $$
 
 **Constraints:**
 
--   $
-x_t \leq b \quad \text{for } t \in T \quad \text{(capacity of A)}
-$
+-   $x_t \leq b \quad \text{for } t \in T \quad \text{(capacity of A)}$
 
--   $
-x'_t \leq b' \quad \text{for } t \in T \quad \text{(capacity of B)}
-$
+-   $x'_t \leq b' \quad \text{for } t \in T \quad \text{(capacity of B)}$
 
--   $
-z_{t-1} + x_t + x'_t \geq d_t \quad \text{for } t \in T \quad \text{(demand)}
-$
+-   $z_{t-1} + x_t + x'_t \geq d_t \quad \text{for } t \in T \quad \text{(demand)}$
 
--   $
-z_{t-1} + x_t + x'_t - d_t = z_t \quad \text{for } t \in T \quad \text{(inventory balance)}
-$
+-   $z_{t-1} + x_t + x'_t - d_t = z_t \quad \text{for } t \in T \quad \text{(inventory balance)}$
 
--   $
-    z_0 = 0 \quad \text{(starting condition)}
-    $
+-   $z_0 = 0 \quad \text{(starting condition)}$
 
 -   $x_t \ge ly_t \quad \text{(minumum lot size)}$
 
 -   $x_t \le My_t$
 
--   $
-    x_t, x'\_t, z_t \geq 0 \quad \text{for } t \in T \quad \text{(nonnegative variables)}
-    $
+-   $x_t, x'\_t, z_t \geq 0 \quad \text{for } t \in T \quad \text{(nonnegative variables)}$
 
 M is a large enough value, such that constraint
 $x_t \le My_t$ is redundant when $y_t = 1$
@@ -295,46 +283,29 @@ $$
 
 **Constraints:**
 
--   $
-160x_i - 50y_i \ge d_i \quad \forall i \in I
-\quad \text{(time demand)}$
+-   $160x_i - 50y_i \ge d_i \quad \forall i \in I \quad \text{(time demand)}$
 
--   $
-\lfloor 0.95x_i \rfloor + y_i = x_{i+1} \quad \forall i \in I
-\quad \text{(number of experts)}$
+-   $\lfloor 0.95x_i \rfloor + y_i = x_{i+1} \quad \forall i \in I \quad \text{(number of experts)}$
 
--   $
-x_1 = 50 \quad \text{(initial experts)}
-$
+-   $x_1 = 50 \quad \text{(initial experts)}$
 
--   $
-x_i, y_i \in \mathbb{Z}^+ \quad \forall i \in I \quad \text{(nonnegative integer variables)}
-$
+-   $x_i, y_i \in \mathbb{Z}^+ \quad \forall i \in I \quad \text{(nonnegative integer variables)}$
 
 The second constraint is clearly not linear. So what should we do?
-Here is the updated text using LaTeX with proper formatting and $$ for equations:
 
 By dropping the $\lfloor \cdot \rfloor$ operator, we obtain the constraint:
 
-$
-0.95x_i + y_i = x_{i+1}, \quad i \in I
-$
+$0.95x_i + y_i = x_{i+1}, \quad i \in I$
 
 which is not correct since, due to the integrality requirements on the variables, it forces $x_i$ to be a multiple of 100 (such that $0.95x_i$ will always be an integer value).
 
 Constraint (number) can be formulated in a linear way by introducing, for each $i \in I$, an auxiliary integer variable $z_i$ that represents $\lfloor 0.95x_i \rfloor$, and by adding the auxiliary constraints:
 
--   $
-z_i + y_i = x_{i+1}, \quad i \in I
-$
+-   $z_i + y_i = x_{i+1}, \quad i \in I$
 
--   $
-100z_i \leq 95x_i \leq 100z_i + 100, \quad i \in I
-$
+-   $100z_i \leq 95x_i \leq 100z_i + 100, \quad i \in I$
 
--   $
-z_i \in \mathbb{Z}^+, \quad i \in I \quad \text{(nonnegative integer variables)}.
-$
+-   $z_i \in \mathbb{Z}^+, \quad i \in I \quad \text{(nonnegative integer variables)}$
 
 Then we clearly have $z_i = \lfloor 0.95x_i \rfloor$.
 
