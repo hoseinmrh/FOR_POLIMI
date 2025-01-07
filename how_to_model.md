@@ -188,61 +188,55 @@ Unsold units can be stored, and the inventory cost is **10 Euro per unit** of th
 
 Sales forecasts indicate a demand of **100, 130, and 150 units** of the product for the next **3 months**.
 
-Here is the markdown version formatted based on the previous examples:
-
----
-
 **Sets:**
 
--   \( T = \{1, 2, 3\} \): Set of months.
+-   $T = \{1, 2, 3\}$: Set of months.
 
 **Parameters:**
 
--   \( b \): Production capacity of \( A \).
--   \( b' \): Production capacity of \( B \).
--   \( c \): Unit production cost for \( A \).
--   \( c' \): Unit production cost for \( B \).
--   \( m \): Inventory cost per unit and per month.
--   \( d_t \): Sales forecasts for month \( t \), where \( t \in T \).
+-   $b$: Production capacity of $A$.
+-   $b'$: Production capacity of $B$.
+-   $c$: Unit production cost for $A$.
+-   $c'$: Unit production cost for $B$.
+-   $m$: Inventory cost per unit and per month.
+-   $d_t$: Sales forecasts for month $t$, where $t \in T$.
 
 **Variables:**
 
--   \( x_t \): Units produced by \( A \) in month \( t \), for \( t \in T \).
--   \( x'\_t \): Units bought from \( B \) in month \( t \), for \( t \in T \).
--   \( z_t \): Units in inventory at the end of month \( t \), for \( t \in T \cup \{0\} \).
+-   $x_t$: Units produced by $A$ in month $t$, for $t \in T$.
+-   $x'_t$: Units bought from $B$ in month $t$, for $t \in T$.
+-   $z_t$: Units in inventory at the end of month $t$, for $t \in T \cup \{0\}$.
 
 **Model:**
 
-\[
-\min \quad \sum\_{t \in T} \big( c x_t + c' x'\_t + m z_t \big) \quad \text{(cost)}
-\]
+$$
+\min \quad \sum_{t \in T} \big( c x_t + c' x'_t + m z_t \big) \quad \text{(cost)}
+$$
 
-\[
-\text{s.t.}
-\]
+**Constraints:**
 
-\[
+-   $
 x_t \leq b \quad \text{for } t \in T \quad \text{(capacity of A)}
-\]
+$
 
-\[
-x'\_t \leq b' \quad \text{for } t \in T \quad \text{(capacity of B)}
-\]
+-   $
+x'_t \leq b' \quad \text{for } t \in T \quad \text{(capacity of B)}
+$
 
-\[
-z\_{t-1} + x_t + x'\_t \geq d_t \quad \text{for } t \in T \quad \text{(demand)}
-\]
+-   $
+z_{t-1} + x_t + x'_t \geq d_t \quad \text{for } t \in T \quad \text{(demand)}
+$
 
-\[
-z\_{t-1} + x_t + x'\_t - d_t = z_t \quad \text{for } t \in T \quad \text{(inventory balance)}
-\]
+-   $
+z_{t-1} + x_t + x'_t - d_t = z_t \quad \text{for } t \in T \quad \text{(inventory balance)}
+$
 
-\[
-z_0 = 0 \quad \text{(starting condition)}
-\]
+-   $
+    z_0 = 0 \quad \text{(starting condition)}
+    $
 
-\[
-x_t, x'\_t, z_t \geq 0 \quad \text{for } t \in T \quad \text{(nonnegative variables)}
-\]
+-   $
+    x_t, x'\_t, z_t \geq 0 \quad \text{for } t \in T \quad \text{(nonnegative variables)}
+    $
 
 ---
