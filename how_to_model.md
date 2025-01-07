@@ -307,7 +307,9 @@ Constraint (number) can be formulated in a linear way by introducing, for each $
 
 Then we clearly have $z_i = \lfloor 0.95x_i \rfloor$.
 
-## For better understanding checkout exercise 1.6
+For better understanding checkout exercise 1.6
+
+---
 
 Some notes:
 
