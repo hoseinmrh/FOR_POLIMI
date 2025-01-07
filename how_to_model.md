@@ -34,7 +34,7 @@ Formulate a Linear Programming problem to determine a mixture that maximizes the
 **Sets:**
 
 -   $I$: Set of Oils, $I \in \{1,2,3\}$
--   $J&: Set of Gasolines, $J \in \{A,B\}$
+-   $J$: Set of Gasolines, $J \in \{A,B\}$
 
 **Parameters:**
 
