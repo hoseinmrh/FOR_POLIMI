@@ -6,7 +6,7 @@ Here we will take a look at different case of modeling for the FOR course. I bel
 2. [Simple ILP Modeling](#2-Simple-ILP-Modeling)
 3. [ILP and Binary Variables Modeling](#3-ILP-Binary-Variables-Modeling)
 4. [Big M Modeling](#4-Big-M-Modeling)
-5. [Somehow I Model](#5-Somehow-I-Modeling)
+5. [Somehow I Model](#5-Somehow-I-Model)
 
 ### 1. Simple LP Modeling
 
@@ -188,6 +188,8 @@ Unsold units can be stored, and the inventory cost is **10 Euro per unit** of th
 
 Sales forecasts indicate a demand of **100, 130, and 150 units** of the product for the next **3 months**.
 
+Give a mixed-integer linear programming formulation for the variant of the problem where production lots have a minimum size. In particular, if any strictly positive quantity is produced in a given month, this quantity cannot be smaller than 15 units.
+
 **Sets:**
 
 -   $T = \{1, 2, 3\}$: Set of months.
@@ -201,11 +203,15 @@ Sales forecasts indicate a demand of **100, 130, and 150 units** of the product 
 -   $m$: Inventory cost per unit and per month.
 -   $d_t$: Sales forecasts for month $t$, where $t \in T$.
 
+-   $l$: Minimum lot size = 15
+-   $M$: Some large value
+
 **Variables:**
 
 -   $x_t$: Units produced by $A$ in month $t$, for $t \in T$.
 -   $x'_t$: Units bought from $B$ in month $t$, for $t \in T$.
 -   $z_t$: Units in inventory at the end of month $t$, for $t \in T \cup \{0\}$.
+-   $y_t$: 1 if production is active at month $t$, 0 otherwise, for $t \in T$
 
 **Model:**
 
@@ -235,8 +241,108 @@ $
     z_0 = 0 \quad \text{(starting condition)}
     $
 
+-   $x_t \ge ly_t \quad \text{(minumum lot size)}$
+
+-   $x_t \le My_t$
+
 -   $
     x_t, x'\_t, z_t \geq 0 \quad \text{for } t \in T \quad \text{(nonnegative variables)}
     $
 
+M is a large enough value, such that constraint
+$x_t \le My_t$ is redundant when $y_t = 1$
+
+For better understanding checkout exercise 1.4.
+
 ---
+
+### 5. Somhow I Model
+
+This example shows how to do a simple trick in order to have the best modeling. Nameing is a reference to Michael Scott's book `Somehow I manage`.
+
+An ICT services company has estimated the following demand for maintenance and consultancy for the next 5 months:
+
+| Month          | 1    | 2    | 3    | 4    | 5     |
+| -------------- | ---- | ---- | ---- | ---- | ----- |
+| Demand (hours) | 6000 | 7000 | 8000 | 9500 | 11000 |
+
+At the beginning of the planning period, 50 technicians are available. Each technician works at most 160 hours per month. To satisfy the demand, new technicians must be hired and trained. During the training period, which lasts one month, an expert technician must coach the newly hired one for 50 hours.
+
+Expert technicians are paid 2000 Euros per month, while the newly hired ones are paid 1000 Euros during the training month. We suppose that, at the end of each month, 5% of the expert technicians leave the company to join competitors.
+
+Give a mathematical programming formulation for the problem of minimizing the total costs.
+
+Here is the updated Markdown with the requested formatting applied to the entire content, including the model:
+
+**Sets:**
+
+-   $I = \{1, \dots, 5\}$: months
+
+**Parameters:**
+
+-   $d_i$: demand for month $i$, $i \in I$
+
+**Decision Variables:**
+
+-   $x_i$: number of expert technicians available in month $i$, $i \in I$
+-   $y_i$: number of technicians training during month $i$, $i \in I$
+
+**Objective Function:**
+
+$$
+\min 2000 \sum_{i \in I} x_i + 1000 \sum_{i \in I} y_i
+$$
+
+**Constraints:**
+
+-   $
+160x_i - 50y_i \ge d_i \quad \forall i \in I
+\quad \text{(time demand)}$
+
+-   $
+\lfloor 0.95x_i \rfloor + y_i = x_{i+1} \quad \forall i \in I
+\quad \text{(number of experts)}$
+
+-   $
+x_1 = 50 \quad \text{(initial experts)}
+$
+
+-   $
+x_i, y_i \in \mathbb{Z}^+ \quad \forall i \in I \quad \text{(nonnegative integer variables)}
+$
+
+The second constraint is clearly not linear. So what should we do?
+Here is the updated text using LaTeX with proper formatting and $$ for equations:
+
+By dropping the $\lfloor \cdot \rfloor$ operator, we obtain the constraint:
+
+$
+0.95x_i + y_i = x_{i+1}, \quad i \in I
+$
+
+which is not correct since, due to the integrality requirements on the variables, it forces $x_i$ to be a multiple of 100 (such that $0.95x_i$ will always be an integer value).
+
+Constraint (number) can be formulated in a linear way by introducing, for each $i \in I$, an auxiliary integer variable $z_i$ that represents $\lfloor 0.95x_i \rfloor$, and by adding the auxiliary constraints:
+
+-   $
+z_i + y_i = x_{i+1}, \quad i \in I
+$
+
+-   $
+100z_i \leq 95x_i \leq 100z_i + 100, \quad i \in I
+$
+
+-   $
+z_i \in \mathbb{Z}^+, \quad i \in I \quad \text{(nonnegative integer variables)}.
+$
+
+Then we clearly have $z_i = \lfloor 0.95x_i \rfloor$.
+
+---
+
+Some notes:
+
+1. The easiest part is to determine the objectove funtion. What do you need for that? Variables! Exactly. So, how to define variables?
+2. Take a look at what is the cost, revenue, time or anything that you want to minimize and maximize. If it is $c_{ij}$ the cost for some $ij$, then the decision variable is also $sth_{ij}$.
+3. If you sense that you need to apply some selection, then you need to use **Binary** variables.
+4. Be aware of bouding **Binary** and **Integer** variables if it is needed. Likek the example 3.
