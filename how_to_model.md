@@ -2,13 +2,13 @@
 
 Here we will take a look at different case of modeling for the FOR course. I believe this is the best note that can be used during the exam (:
 
-1. [Simple LP Modeling](#1-Simple-LP-Model)
-2. [Simple ILP Modeling](#2-Simple-ILP-Model)
-3. [ILP and Binary Variables Modeling](#3-ILP-Binary-Variables-Model)
-4. [Big M Modeling](#4-Big-M-Model)
-5. [Somehow I Model](#5-Somehow-I-Model)
+1. [Simple LP Modeling](#1-Simple-LP-Modeling)
+2. [Simple ILP Modeling](#2-Simple-ILP-Modeling)
+3. [ILP and Binary Variables Modeling](#3-ILP-Binary-Variables-Modeling)
+4. [Big M Modeling](#4-Big-M-Modeling)
+5. [Somehow I Model](#5-Somehow-I-Modeling)
 
-### 1. Simple LP Model
+### 1. Simple LP Modeling
 
 A refinery produces two types of gasoline by mixing three basic oils according to the following gasoline mixture rules:
 
@@ -59,9 +59,190 @@ $$
 
 **Constraints:**
 
--   $\sum_{j \in J} x_{ij} \le a_i \ \ \ i \in I \ \ \ (Availability)$
+-   $\sum_{j \in J} x_{ij} \le a_i \ \ \ i \in I \ \ \ \text{(Availability)}$
 -   $\sum_{i \in I} x_{ij} = y_j \ \ \ j \in J \ \ \ (Conservation)$
 -   $x_{ij} \ge y_j * qMin_{ij} \ \ \ j \in J \ \ i \in I \ \ \ (Minimum \ Quanitity)$
 -   $x_{ij} \le y_j * qMax_{ij} \ \ \ j \in J \ \ i \in I \ \ \ (Maximum \ Quanitity)$
 -   $x_{ij} \ge 0$
 -   $y_{ij} \ge 0$
+
+For better understanding check exercise 1.2 of the course.
+
+---
+
+### 2. Simple ILP Modeling
+
+A manager needs to plan the shoe production for a single day. Five models of shoes can be produced, utilizing the labor of three workers. The time required by each worker to manufacture a shoe of each model is shown in the following table (hours/unit):
+
+| Model/Worker | Worker 1 | Worker 2 | Worker 3 |
+| ------------ | -------- | -------- | -------- |
+| 1            | 1.5      | 3.5      | 4        |
+| 2            | 1.8      | 2        | 3        |
+| 3            | 2        | 1        | 2.5      |
+| 4            | 2.5      | 1.5      | 3.5      |
+| 5            | 3.5      | 3.5      | 4.2      |
+
+Due to production constraints imposed by the unions, each worker must work no less than 8 hours a day, but no more than 10.
+
+The next table shows, for each model of shoes, the selling price and an estimation of the maximal market demand:
+
+| Model | Price (€) | Demand (units) |
+| ----- | --------- | -------------- |
+| 1     | 56        | 4              |
+| 2     | 86        | 3              |
+| 3     | 45        | 3              |
+| 4     | 42        | 5              |
+| 5     | 65        | 8              |
+
+**Problem Statement:**
+
+Formulate an Integer Linear Programming (ILP) model to maximize the revenue, subject to the following constraints:
+
+1. Each worker must work between 8 and 10 hours.
+2. The production of each model must not exceed its market demand.
+
+Here’s the updated version with proper LaTeX formatting using `$` for inline and `$$` for block equations:
+
+---
+
+**Sets:**
+
+-   $I$: Set of workers
+-   $J$: Set of models of electronic devices
+
+**Parameters:**
+
+-   $t_{ij}$: Manufacturing time for worker $i \in I$ and model of electronic device $j \in J$
+-   $p_j$: Selling price for model of electronic device $j \in J$
+-   $q_j$: Demand for model of electronic device $j \in J$
+-   $T_{\text{min}}$: Minimum amount of working hours
+-   $T_{\text{max}}$: Maximum amount of working hours
+
+**Decision Variables:**
+
+-   $x_{ij}$: Number of electronic devices of model $j$ manufactured by worker $i$, $i \in I, j \in J$
+
+**Objective Function:**
+
+$$
+\max \sum_{j \in J} p_j \sum_{i \in I} x_{ij} \quad \text{(revenue)}
+$$
+
+**Constraints:**
+
+-   $\sum_{j \in J} t_{ij} x_{ij} \geq T_{\text{min}}, \quad \forall i \in I \quad \text{(minimum working hours)}$
+
+-   $\sum_{j \in J} t_{ij} x_{ij} \leq T_{\text{max}}, \quad \forall i \in I \quad \text{(maximum working hours)}$
+
+-   $\sum_{i \in I} x_{ij} \leq q_j, \quad \forall j \in J \quad \text{(demand)}$
+
+-   $x_{ij} \in \mathbb{Z}^+, \quad \forall i \in I, j \in J \quad \text{(non-negativity and integrality)}$
+
+---
+
+### 3. ILP & Binary Variables Modeling
+
+A distribution company has to supply a single type of good to $n$ clients. Let $d_j$ denote the
+demand of client $j$, where $j \in J = \{1,2,...,n\}$. The goods must be stocked in warehouses before
+being delivered to the clients. The warehouses can be located in $m$ candidate sites. Let $f_i$ denote the cost for opening a warehouse at the candidate site $i \in I = \{1,2,...,m\}$, and $b_i$ denote its maximum capacity. Let $c_{ij}$ be the unit transportation cost from warehouse $i$ to client
+$j$, and $q_{ij}$ be the maximum quantity to be transported from warehouse $i$ to client $j$.
+
+Give an integer linear programming formulation to decide where to locate the warehouses
+and how to satisfy the client demands so as to minimize the total costs, i.e., the total opening costs plus the total transportation costs.
+
+**Sets and Parameters:**
+
+Sets and parameters are well described in the text.
+
+**Decision Variables:**
+
+-   $x_{ij}$: Amount of goods to be transported from the warehouse in candidate site $i \in I$ to client $j \in J$
+-   $y_i$: Equals 1 if the warehouse in candidate site $i \in I$ is opened, and 0 otherwise.
+
+**Objective Function:**
+
+$$
+\min \sum_{i \in I,j \in J} c_{ij}x_{ij} + \sum_{i} f_i y_i
+$$
+
+**Constraints:**
+
+-   $\sum_{i \in I} x_{ij} \ge d_j \ \ \forall j \in J \quad \text{(demand)}$
+-   $\sum_{j \in J} x_{ij} \le b_i \ \ \forall i \in I \quad \text{(availability)}$
+-   $0 \le x_{ij} \le y_iq_{ij} \ \ \forall i \in I \ \ j \in J \quad \text{(bounds and link capacity)}$
+-   $y_i \in \{0,1\} \quad \text{(binary variable)}$
+
+Please note that when you are using binary variables, somewhere you should bound it with other variables like the 3rd constraint here.
+
+For better understanding checkout the exercise 1.7
+
+---
+
+### 4. Big M Modeling
+
+A company **A**, which produces one type of high-precision measuring instrument, has to plan the production for the next **3 months**.
+
+Each month, **A** can produce at most **110 units**, at a unit cost of **300 Euro**. Moreover, each month, up to **60 additional units** can be produced by another company **B** at a unit cost of **330 Euro**.
+
+Unsold units can be stored, and the inventory cost is **10 Euro per unit** of the product, per month.
+
+Sales forecasts indicate a demand of **100, 130, and 150 units** of the product for the next **3 months**.
+
+Here is the markdown version formatted based on the previous examples:
+
+---
+
+**Sets:**
+
+-   \( T = \{1, 2, 3\} \): Set of months.
+
+**Parameters:**
+
+-   \( b \): Production capacity of \( A \).
+-   \( b' \): Production capacity of \( B \).
+-   \( c \): Unit production cost for \( A \).
+-   \( c' \): Unit production cost for \( B \).
+-   \( m \): Inventory cost per unit and per month.
+-   \( d_t \): Sales forecasts for month \( t \), where \( t \in T \).
+
+**Variables:**
+
+-   \( x_t \): Units produced by \( A \) in month \( t \), for \( t \in T \).
+-   \( x'\_t \): Units bought from \( B \) in month \( t \), for \( t \in T \).
+-   \( z_t \): Units in inventory at the end of month \( t \), for \( t \in T \cup \{0\} \).
+
+**Model:**
+
+\[
+\min \quad \sum\_{t \in T} \big( c x_t + c' x'\_t + m z_t \big) \quad \text{(cost)}
+\]
+
+\[
+\text{s.t.}
+\]
+
+\[
+x_t \leq b \quad \text{for } t \in T \quad \text{(capacity of A)}
+\]
+
+\[
+x'\_t \leq b' \quad \text{for } t \in T \quad \text{(capacity of B)}
+\]
+
+\[
+z\_{t-1} + x_t + x'\_t \geq d_t \quad \text{for } t \in T \quad \text{(demand)}
+\]
+
+\[
+z\_{t-1} + x_t + x'\_t - d_t = z_t \quad \text{for } t \in T \quad \text{(inventory balance)}
+\]
+
+\[
+z_0 = 0 \quad \text{(starting condition)}
+\]
+
+\[
+x_t, x'\_t, z_t \geq 0 \quad \text{for } t \in T \quad \text{(nonnegative variables)}
+\]
+
+---
