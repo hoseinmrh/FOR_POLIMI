@@ -101,8 +101,6 @@ Formulate an Integer Linear Programming (ILP) model to maximize the revenue, sub
 1. Each worker must work between 8 and 10 hours.
 2. The production of each model must not exceed its market demand.
 
-Here’s the updated version with proper LaTeX formatting using `$` for inline and `$$` for block equations:
-
 ---
 
 **Sets:**
@@ -309,7 +307,7 @@ Constraint (number) can be formulated in a linear way by introducing, for each $
 
 Then we clearly have $z_i = \lfloor 0.95x_i \rfloor$.
 
----
+## For better understanding checkout exercise 1.6
 
 Some notes:
 
