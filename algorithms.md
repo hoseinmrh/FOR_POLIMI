@@ -56,11 +56,11 @@
 
 5.  **Topological Sort**:
 
-        - **Complexity**:
+-   **Complexity**:
 
-    $$
-    O(n+m)
-    $$
+$$
+O(n+m)
+$$
 
 ---
 
@@ -96,17 +96,14 @@
 -   **Input**: Graph $G=(N,A)$ with capacity $k_{ij} \gt 0$ for every $(i,j) \in A, \ \ s,t \in N$.
 -   **Output**: Feasible flow $\underline{x}$ from $s$ to $t$ of maximum value of $\varphi^*$
 
-<<<<<<< HEAD
 -   **Complexity**:
 
 1. Since $\delta > 0$, the value $\varphi$ increases at each iteration (cycle).
 2. If all $k_{ij}$ are integer, $\mathbf{x}$ and $\overline{k}_{ij}$ are integer, and $\delta \geq 1$, then there are at most $\varphi^*$ increases.
 3. Since
-=======
-    1. Since $\delta > 0$, the value $\varphi$ increases at each iteration (cycle).
-    2. If all $k_{ij}$ are integer, $\mathbf{x}$ and $\overline{k}_{ij}$ are integer, and $\delta \geq 1$, then there are at most $\varphi^*$ increases.
-    3. Since
->>>>>>> 90c639c31b166b181c6c0798390b5fb461067d19
+4. Since $\delta > 0$, the value $\varphi$ increases at each iteration (cycle).
+5. If all $k_{ij}$ are integer, $\mathbf{x}$ and $\overline{k}_{ij}$ are integer, and $\delta \geq 1$, then there are at most $\varphi^*$ increases.
+6. Since
     $$
     \varphi^* \leq k(\{s\}) \leq m \, k_{\text{max}},
     $$
