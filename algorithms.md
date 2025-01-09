@@ -8,9 +8,10 @@
 -   **Input**: $G = (N,A)$, described by the successor lists, and $s \in N$.
 -   **Output**: Subset $M \subseteq N$ of nodes of $G$ reachable from $s$.
 -   **Complexity**: Since each node $u$ is inserted in $Q$ at most once and each arc $(u,v)$ is considered at most once, the overall complexity is:
-    $$
-    O(n+m), where \ \ n = |N|, \ m = |A|
-    $$
+
+$$
+O(n+m), where \ \ n = |N|, \ m = |A|
+$$
 
 ---
 
@@ -20,9 +21,11 @@
 -   **Input**: Connected $G=(N, E)$ with edge costs.
 -   **Output**: Subset $T \subseteq N$ of edges of $G$ such that $G_T=(N,T)$ is a minimum cost spanning tree of $G$.
 -   **Complexity**: Using to sets $C_j$ and $closest_j$ we can reach the time complexity of:
-    $$
-    O(n^2)
-    $$
+
+$$
+O(n^2)
+$$
+
 -   **Optimiality Condition**: Check for cost decreasing edges. If exist, not optimal, otherwise, optimal!
 
 ---
@@ -34,9 +37,10 @@
 -   **Input**: $G = (N,A)$ with non-negative arc costs, $s \in N$
 -   **Output**: Shortest path from $s$ to all nodes of $G
 -   **Complexity**:
-    $$
-    O(n^2)
-    $$
+
+$$
+O(n^2)
+$$
 
 ---
 
@@ -50,9 +54,12 @@
     O(n^3)
     $$
 -   **Triangular Operation**: For each pair of nodes $i, j$ with $i \neq u$ and $j \neq u$ (including the case $i=j$), check whether when going from $i$ to $j$ it is more convenient to go via $u$:
-    $$
-    if \ \ d_{iu} + d_{uj} \lt d_{ij} \ \ then \ \ d_ij \leftarrow d_{iu} + d{uj}
-    $$
+
+$$
+if \ \ d_{iu} + d_{uj} \lt d_{ij} \ \ then \ \ d_ij \leftarrow d_{iu} + d{uj}
+$$
+
+---
 
 5.  **Topological Sort**:
 
