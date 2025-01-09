@@ -99,7 +99,6 @@
     1. Since $\delta > 0$, the value $\varphi$ increases at each iteration (cycle).
     2. If all $k_{ij}$ are integer, $\mathbf{x}$ and $\overline{k}_{ij}$ are integer, and $\delta \geq 1$, then there are at most $\varphi^*$ increases.
     3. Since
-
     $$
     \varphi^* \leq k(\{s\}) \leq m \, k_{\text{max}},
     $$
