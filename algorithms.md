@@ -70,9 +70,10 @@ $$
 -   **Input**: DAG $G(N,A)$ and $s \in N$
 -   **Output**: Shortest path from $s$ to other nodes.
 -   **Complexity**: The topological sort is in order of $O(n+m)$ and in the DP part, each node and arc is considered only once so again, $O(n+m)$. Overall:
-    $$
-    O(n+m)
-    $$
+
+$$
+O(n+m)
+$$
 
 ---
 
@@ -84,9 +85,10 @@ $$
     associated to each $(i,j) \in A$.
 -   **Output**: $(T_{min}, T_{max}) for $i = 1, 2, ..., n \in N$
 -   **Complexity**: This algorithm has 3 parts. First is topological sort which has the order of $O(m+n)$, then the last two parts which are for calculating $T_{min}$ and $T_{max}$ are also in order of $O(m+n)$ since each node/arc is only considered once. So the overall complexity is:
-    $$
-    O(n+m)
-    $$
+
+$$
+O(n+m)
+$$
 
 ---
 
