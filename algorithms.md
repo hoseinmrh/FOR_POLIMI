@@ -2,7 +2,7 @@
 
 ## Chapter 2. Graph Optimization
 
-1. **Graph Readability**
+1. **Graph Reachability**
 
 -   Given a directed graph $G = (N,A)$ and a node $s$, determine all the nodes that arereachable from $s$.
 -   **Input**: $G = (N,A)$, described by the successor lists, and $s \in N$.
