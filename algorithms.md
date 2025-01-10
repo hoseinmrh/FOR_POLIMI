@@ -50,9 +50,11 @@ $$
 -   **Input**: Directed $G=(N,A)$ with an $n \times n$ cost matrix, $C=[c_{ij}]$.
 -   **Output**: For each pair of nodes $i,j \in N$, the cost $d_{ij}$ of the shortest path from $i$ to $j$.
 -   **Complexity**:
-    $$
-    O(n^3)
-    $$
+  
+$$
+O(n^3)
+$$
+
 -   **Triangular Operation**: For each pair of nodes $i, j$ with $i \neq u$ and $j \neq u$ (including the case $i=j$), check whether when going from $i$ to $j$ it is more convenient to go via $u$:
 
 $$
