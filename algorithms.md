@@ -115,9 +115,10 @@ $$
 4. Since $\delta > 0$, the value $\varphi$ increases at each iteration (cycle).
 5. If all $k_{ij}$ are integer, $\mathbf{x}$ and $\overline{k}_{ij}$ are integer, and $\delta \geq 1$, then there are at most $\varphi^*$ increases.
 6. Since
-    $$
-    \varphi^* \leq k(\{s\}) \leq m \, k_{\text{max}},
-    $$
+
+$$
+\varphi^* \leq k(\{s\}) \leq m \, k_{\text{max}},
+$$
 
 where $m = |A|$ and $k_{\text{max}} = \max\{k_{ij} : (i,j) \in A\}$, and each cycle is $O(m)$, the overall complexity is
 
