@@ -19,7 +19,7 @@ $$
 
 -   Iteratively build a spanning tree.
 -   **Input**: Connected $G=(N, E)$ with edge costs.
--   **Output**: Subset $T \subseteq N$ of edges of $G$ such that $G_T=(N,T)$ is a minimum cost spanning tree of $G$.
+-   **Output**: Subset $T \subseteq E$ of edges of $G$ such that $G_T=(N,T)$ is a minimum cost spanning tree of $G$.
 -   **Complexity**: Using to sets $C_j$ and $closest_j$ we can reach the time complexity of:
 
 $$
@@ -46,7 +46,7 @@ $$
 
 4. **Floyd-Warshall**:
 
--   Detects the presence of circuits with negative cost (identi es ill-de nedness). Provides a set of shortest paths between all pairs of nodes, even when there are arcs with negative cost.
+-   Detects the presence of circuits with negative cost (identifies ill-definedness). Provides a set of shortest paths between all pairs of nodes, even when there are arcs with negative cost.
 -   **Input**: Directed $G=(N,A)$ with an $n \times n$ cost matrix, $C=[c_{ij}]$.
 -   **Output**: For each pair of nodes $i,j \in N$, the cost $d_{ij}$ of the shortest path from $i$ to $j$.
 -   **Complexity**:
