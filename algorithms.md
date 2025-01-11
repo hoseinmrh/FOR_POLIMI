@@ -4,7 +4,7 @@
 
 1. **Graph Reachability**
 
--   Given a directed graph $G = (N,A)$ and a node $s$, determine all the nodes that arereachable from $s$.
+-   Given a directed graph $G = (N,A)$ and a node $s$, determine all the nodes that are reachable from $s$.
 -   **Input**: $G = (N,A)$, described by the successor lists, and $s \in N$.
 -   **Output**: Subset $M \subseteq N$ of nodes of $G$ reachable from $s$.
 -   **Complexity**: Since each node $u$ is inserted in $Q$ at most once and each arc $(u,v)$ is considered at most once, the overall complexity is:
@@ -26,7 +26,7 @@ $$
 O(n^2)
 $$
 
--   **Optimiality Condition**: Check for cost decreasing edges. If exist, not optimal, otherwise, optimal!
+-   **Optimiality Condition**: Check for cost decreasing edges. If exists, not optimal, otherwise, optimal!
 
 ---
 
