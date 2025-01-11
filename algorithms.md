@@ -35,7 +35,7 @@ $$
 -   Consider the nodes in increasing order of length (cost) of the shortest path from $s$
     to any one of the other nodes.
 -   **Input**: $G = (N,A)$ with non-negative arc costs, $s \in N$
--   **Output**: Shortest path from $s$ to all nodes of $G
+-   **Output**: Shortest path from $s$ to all nodes of $G$
 -   **Complexity**:
 
 $$
@@ -50,7 +50,7 @@ $$
 -   **Input**: Directed $G=(N,A)$ with an $n \times n$ cost matrix, $C=[c_{ij}]$.
 -   **Output**: For each pair of nodes $i,j \in N$, the cost $d_{ij}$ of the shortest path from $i$ to $j$.
 -   **Complexity**:
-  
+
 $$
 O(n^3)
 $$
@@ -92,7 +92,7 @@ $$
 
 -   **Input**: Graph $G = (N,A)$, with $n = |N|$ , $m = |A|$ and the duration $d_{ij}$
     associated to each $(i,j) \in A$.
--   **Output**: $(T_{min}, T_{max}) for $i = 1, 2, ..., n \in N$
+-   **Output**: $(T_{min}, T_{max})$ for $i = 1, 2, ..., n \in N$
 -   **Complexity**: This algorithm has 3 parts. First is topological sort which has the order of $O(m+n)$, then the last two parts which are for calculating $T_{min}$ and $T_{max}$ are also in order of $O(m+n)$ since each node/arc is only considered once. So the overall complexity is:
 
 $$
