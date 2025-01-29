@@ -140,6 +140,8 @@ for i in I:
         model.add_constr(mip.xsum(x[i,j]) <= b[i])
 ```
 
+---
+
 **Another Example**: Consider this constraint with condition:
 
 $$
@@ -160,11 +162,11 @@ Here since we don't have a summation on the $j$ we defined them as the inner loo
 
 Moreover, since in both $x_{ij}$ and $x_{ij^*}$ the term $i$ is the same, the $\forall i$ should be the outer loop.
 
+---
+
 **Yet Another Example**: What if we had conditions and $\sum$ together like this:
 
-$$
-\sum_{j \in J} x_{ij} \lt b_{i} \ \ \forall i \in I : i \ne j
-$$
+$$\sum_{j \in J} x_{ij} \lt b_{i} \ \ \forall i \in I : i \ne j$$
 
 Since we can not define the inner loop outside the `xsum`, we do this:
 
