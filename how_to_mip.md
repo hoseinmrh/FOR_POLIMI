@@ -144,6 +144,8 @@ for i in I:
 
 **Another Example**: Consider this constraint with condition:
 
+$$\sum_{j \in J} x_{ij} \lt b_{i} \ \ \forall i \in I : i \ne j$$
+
 $$x_{ij}+x_{ij^*} \leq 1 \ \ i \in I, \ j,j^* \in J \ : j - j^* \gt n$$
 
 These types of constraints are known as _limit_ or _conflict_ constraints. To model them:
