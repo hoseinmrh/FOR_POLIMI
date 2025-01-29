@@ -144,7 +144,7 @@ for i in I:
 
 **Another Example**: Consider this constraint with condition:
 
-$$x_{ij}+x_{ij^*} \leq 1 \ \ i \in I, \ j,j^* \in J \ : j - j^* > n$$
+$$x_{ij}+x_{ij^*} \leq 1 \ \ i \in I, \ j,j^* \in J \ : j - j^* \gt n$$
 
 These types of constraints are known as _limit_ or _conflict_ constraints. To model them:
 
