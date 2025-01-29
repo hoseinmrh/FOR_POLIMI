@@ -7,6 +7,8 @@ Here we will take a look at different case of modeling for the FOR course. I bel
 3. [ILP and Binary Variables Modeling](#3-ILP-Binary-Variables-Modeling)
 4. [Big M Modeling](#4-Big-M-Modeling)
 5. [Somehow I Model](#5-Somehow-I-Model)
+6. [Some Notes](#6-some-notes)
+7. [What is my Type](#7-what-is-my-type)
 
 ### 1. Simple LP Modeling
 
@@ -311,9 +313,41 @@ For better understanding checkout exercise 1.6
 
 ---
 
-Some notes:
+### 6. Some notes:
 
 1. The easiest part is to determine the objectove funtion. What do you need for that? Variables! Exactly. So, how to define variables?
 2. Take a look at what is the cost, revenue, time or anything that you want to minimize and maximize. If it is $c_{ij}$ the cost for some $ij$, then the decision variable is also $sth_{ij}$.
 3. If you sense that you need to apply some selection, then you need to use **Binary** variables.
 4. Be aware of bouding **Binary** and **Integer** variables if it is needed. Likek the example 3.
+5. In order to model a constraint like this: **If the number of rented SR and MR
+   aircrafts is at least 20, then no more than 7 LR aircrafts can be rented,** you can:
+
+    $$
+    S_r + M_r \ge 20w
+    $$
+
+    $$
+    L_r \le 30(1-w) + 7w
+    $$
+
+    where $w$ is a binary variable. Consider this as a general case when you want to ensure that if a condition happens, it will result in another condition and otherwise another condition. $w$ and $1-w$ are the keys to address these types of issues.
+
+6. **Conflict Constraints**: To address and model these types of constraints, where among giving $n$ events only $m$ of them can happen at the same time knowing the fact that $n \ge m$, we model this using binary variables, like below:
+    $$
+    x_1 + x_2 + ... + x_n \lt m
+    $$
+    where $x_i$ is binary variable stating happening of the event $i$.
+
+---
+
+### 7. What is my type?
+
+Another problem which can be challengin at the start is to know what type of variables do I need? So take the following table as a guide!
+
+| Situation                                                                                | Type of Variable                     |
+| ---------------------------------------------------------------------------------------- | ------------------------------------ |
+| You need to address a condition                                                          | `BINARY`                             |
+| An event happening or not                                                                | `BINARY`                             |
+| Decide how many of resources to allocation (Chossing which ones)                         | `BINARY`                             |
+| If we have something, it is not more than some other thing (Example 4)                   | `Big M`                              |
+| You have some sort of cost or revenue parameters so you need to know the number of goods | `FLOAT / INT` _Based on the problem_ |
