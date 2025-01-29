@@ -322,21 +322,17 @@ For better understanding checkout exercise 1.6
 5. In order to model a constraint like this: **If the number of rented SR and MR
    aircrafts is at least 20, then no more than 7 LR aircrafts can be rented,** you can:
 
-    $$
-    S_r + M_r \ge 20w
-    $$
+$$S_r + M_r \ge 20w$$
 
-    $$
-    L_r \le 30(1-w) + 7w
-    $$
+$$L_r \le 30(1-w) + 7w$$
 
-    where $w$ is a binary variable. Consider this as a general case when you want to ensure that if a condition happens, it will result in another condition and otherwise another condition. $w$ and $1-w$ are the keys to address these types of issues.
+where $w$ is a binary variable. Consider this as a general case when you want to ensure that if a condition happens, it will result in another condition and otherwise another condition. $w$ and $1-w$ are the keys to address these types of issues.
 
 6. **Conflict Constraints**: To address and model these types of constraints, where among giving $n$ events only $m$ of them can happen at the same time knowing the fact that $n \ge m$, we model this using binary variables, like below:
-    $$
-    x_1 + x_2 + ... + x_n \lt m
-    $$
-    where $x_i$ is binary variable stating happening of the event $i$.
+
+$$x_1 + x_2 + ... + x_n \lt m$$
+
+where $x_i$ is binary variable stating happening of the event $i$.
 
 ---
 

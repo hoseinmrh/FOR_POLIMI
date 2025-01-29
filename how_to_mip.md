@@ -146,7 +146,7 @@ $$
 x_{ij}+x_{ij^*} \leq 1 \ \ \  i \in I,j,j^* \in J: j - j^* > n
 $$
 
-These types of constraints are known as _limi_ or _conflict_ constraints. To model them:
+These types of constraints are known as _limit_ or _conflict_ constraints. To model them:
 
 ```python
 for i in I:
