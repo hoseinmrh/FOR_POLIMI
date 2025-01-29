@@ -127,6 +127,52 @@ for i in I:
     model.add_constr(mip.xsum(x[i, j] for j in J) <= b[i])
 ```
 
+**Note**: In these typs of constraints where we have too loops, the outer loop will always be the one the right end of the equation like here which is $\forall i \in I$, and the inner loop which should be implemented in `xsum`, always comes from the $\sum$ part. Let's take a look at some wrong ways to do it:
+
+```python
+### Wrong. I should be the outer loop
+for j in J:
+        model.add_constr(mip.xsum(x[i,j] for i in I) <= b[i])
+
+### Wrong. The inner loop should be defined within the xsum function.
+for i in I:
+    for j in J:
+        model.add_constr(mip.xsum(x[i,j]) <= b[i])
+```
+
+**Another Example**: Consider this constraint with condition:
+
+$$
+x_{ij}+x_{ij^*} \leq 1 \ \ \  i \in I,j,j^* \in J: j - j^* > n
+$$
+
+These types of constraints are known as _limi_ or _conflict_ constraints. To model them:
+
+```python
+for i in I:
+    for j in J:
+        for j1 in J:
+            if (j - j1) > n:
+                model.add_constr(x[i, str(j)]+x[i, str(j1)] <= 1)
+```
+
+Here since we don't have a summation on the $j$ we defined them as the inner loops.
+
+Moreover, since in both $x_{ij}$ and $x_{ij^*}$ the term $i$ is the same, the $\forall i$ should be the outer loop.
+
+**Yet Another Example**: What if we had conditions and $\sum$ together like this:
+
+$$
+\sum_{j \in J} x_{ij} \lt b_{i} \ \ \forall i \in I : i \ne j
+$$
+
+Since we can not define the inner loop outside the `xsum`, we do this:
+
+```python
+for i in I:
+    model.add_constr(mip.xsum(x[i, j] for j in J if i != j) <= b[i])
+```
+
 ---
 
 ### 5. Solve the Problem
