@@ -344,6 +344,6 @@ Another problem which can be challengin at the start is to know what type of var
 | ---------------------------------------------------------------------------------------- | ------------------------------------ |
 | You need to address a condition                                                          | `BINARY`                             |
 | An event happening or not                                                                | `BINARY`                             |
-| Decide how many of resources to allocation (Chossing which ones)                         | `BINARY`                             |
+| Decide how many of resources to allocation (Choosing which ones)                         | `BINARY`                             |
 | If we have something, it is not more than some other thing (Example 4)                   | `Big M`                              |
 | You have some sort of cost or revenue parameters so you need to know the number of goods | `FLOAT / INT` _Based on the problem_ |
