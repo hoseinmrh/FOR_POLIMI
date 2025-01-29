@@ -130,7 +130,7 @@ for i in I:
 **Note**: In these typs of constraints where we have too loops, the outer loop will always be the one the right end of the equation like here which is $\forall i \in I$, and the inner loop which should be implemented in `xsum`, always comes from the $\sum$ part. Let's take a look at some wrong ways to do it:
 
 ```python
-### Wrong. I should be the outer loop
+### Wrong. It should be the outer loop
 for j in J:
         model.add_constr(mip.xsum(x[i,j] for i in I) <= b[i])
 
@@ -144,7 +144,7 @@ for i in I:
 
 **Another Example**: Consider this constraint with condition:
 
-$$x_{ij}+x_{ij^*} \leq 1 \ \ \  i \in I,j,j^* \in J: j - j^* > n$$
+$$x_{ij}+x_{ij^*} \leq 1 \ \ i \in I, \ j,j^* \in J \ : j - j^* > n$$
 
 These types of constraints are known as _limit_ or _conflict_ constraints. To model them:
 
